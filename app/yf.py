@@ -16,8 +16,8 @@ st.title('Live Stock Data from Yahoo Finance')
 
 # Input fields for user input
 ticker = st.text_input('Enter the stock ticker symbol (e.g. AAPL):')
-period = st.selectbox('Select the period:', ('1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y', 'ytd', 'max'))
-interval = st.selectbox('Select the interval:', ('1m', '2m', '5m', '15m', '30m', '60m', '90m', '1h', '1d', '5d', '1wk', '1mo', '3mo'))
+period = st.selectbox('Select the period:', ('1d', '7d', '1mo', '3mo', '6mo', '1y', '10y', 'ytd', 'max'))
+interval = st.selectbox('Select the interval:', ('1h', '1d', '5d', '1wk', '1mo', '3mo'))
 
 # Placeholder for live price counter
 live_price_placeholder = st.empty()
