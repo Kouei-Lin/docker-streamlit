@@ -1,17 +1,23 @@
 import streamlit as st
 import pandas as pd
 import os
-import yfinance as yf
+import requests
 import plotly.express as px
 
-# Function to fetch price data from Yahoo Finance API
+# Function to fetch price data from CoinGecko API
 def fetch_price(ticker):
+    url = f"https://api.coingecko.com/api/v3/simple/price?ids={ticker}&vs_currencies=usd"
+    response = requests.get(url)
+    data = response.json()
+
     try:
-        stock = yf.Ticker(ticker)
-        price = stock.history(period="1d")['Close'].iloc[-1]
+        price = data[ticker]['usd']
         return price
+    except KeyError:
+        st.error(f"Error: Unable to fetch price for {ticker}. Please check the ticker symbol.")
+        return None
     except Exception as e:
-        st.error(f"Error: Unable to fetch price for {ticker}. Please check the ticker symbol and ensure it is valid.")
+        st.error(f"Error occurred: {e}")
         return None
 
 # Function to add entry to portfolio CSV
@@ -46,12 +52,12 @@ def load_portfolio_from_csv():
 
 # Streamlit App
 def main():
-    st.title('Stock Portfolio App')
+    st.title('Crypto Portfolio App')
 
     # Sidebar for user input
     with st.sidebar:
         st.subheader('Add Entry')
-        ticker = st.text_input('Enter Stock Symbol').upper()  # Convert input to uppercase
+        ticker = st.text_input('Enter Ticker Symbol')
         amount = st.number_input('Enter Amount')
 
         if st.button('Add to Portfolio'):
@@ -75,7 +81,7 @@ def main():
             st.write("")
             st.write("")
 
-            # Plot percentage of USD value for each stock
+            # Plot percentage of USD value for each coin
             fig = px.pie(df, values='usd_value', names='ticker', title='Portfolio Allocation')
             st.plotly_chart(fig)
         else:
