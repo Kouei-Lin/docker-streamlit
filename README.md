@@ -5,7 +5,13 @@
 參訪以下連結來安裝[Docker](https://docs.docker.com/engine/install/)和[Docker Compose](https://docs.docker.com/compose/install/)。
 
 ## 下載Repo
-`$ git clone https://github.com/Kouei-Lin/docker-streamlit && cd docker-streamlit`
+`$ git clone https://github.com/Kouei-Lin/docker-streamlit`
+
+## 進入文件夾
+
+`$ cd docker-streamlit`
+
+`$ cd yf`
 
 ## 建Image並運作容器
 `$ docker compose up -d --build`
