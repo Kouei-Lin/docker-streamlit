@@ -24,7 +24,7 @@ def fetch_mentions_from_4chan(board_letter, word):
         return None
 
 def main():
-    st.title("Wen does sir shill?")
+    st.title("Wen does Sir post?")
 
     board_letter = st.text_input("Board Letter (e.g. 'biz'): ").lower()
     word = st.text_input("Word to search (e.g. 'kleros'): ").lower()
