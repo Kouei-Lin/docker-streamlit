@@ -21,10 +21,5 @@
 
 `Port`如有衝突可於`docker-compose.yml`自行變更`xxx(希望Port):8501`。
 
-## 刪除容器
-`$ docker compose down -v`
-
-## 刪除Image
-`$ docker images`查看`image_id`
-
-`$ docker image rm image_id`
+## 刪除容器和Image
+`$ docker compose down -v --rmi all`
