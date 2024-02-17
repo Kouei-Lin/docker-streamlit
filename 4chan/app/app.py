@@ -45,7 +45,8 @@ def main():
                 plt.xlabel("Hour of the Day")
                 plt.ylabel("Mentions Count")
                 plt.title("Hourly Mentions Count throughout the Day")
-                plt.xticks(range(1, 25))  # Set x-axis ticks from 1 to 24
+                plt.xticks(range(0, 25))
+                plt.yticks(range(int(mention_counts.values.max()) + 1))
                 st.pyplot(plt)
             else:
                 st.write("Failed to fetch data from 4chan API.")
