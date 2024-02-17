@@ -29,7 +29,7 @@ def main():
     board_letter = st.text_input("Board Letter (e.g. 'biz'): ").lower()
     word = st.text_input("Word to search (e.g. 'kleros'): ").lower()
 
-    if st.button("Click me to COUNT!!"):
+    if st.button("Count Mentions"):
         if board_letter and word:
             mention_times = fetch_mentions_from_4chan(board_letter, word)
             if mention_times is not None:
@@ -39,12 +39,13 @@ def main():
                 # Create a pandas DataFrame to count mentions by hour
                 mention_counts = pd.Series(mention_times).value_counts().sort_index()
 
-                # Plot the time chart with axis labels
+                # Plot the scatter chart with axis labels
                 plt.figure(figsize=(10, 6))
-                plt.plot(mention_counts.index, mention_counts.values, marker='o')
+                plt.scatter(mention_counts.index, mention_counts.values, marker='o')
                 plt.xlabel("Hour of the Day")
                 plt.ylabel("Mentions Count")
                 plt.title("Hourly Mentions Count throughout the Day")
+                plt.xticks(range(1, 25))  # Set x-axis ticks from 1 to 24
                 st.pyplot(plt)
             else:
                 st.write("Failed to fetch data from 4chan API.")
