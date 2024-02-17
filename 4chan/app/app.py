@@ -33,7 +33,6 @@ def main():
         if board_letter and word:
             mention_times = fetch_mentions_from_4chan(board_letter, word)
             if mention_times is not None:
-                st.write(f"Mentions of '{word}' on 4chan '{board_letter}' board:")
                 st.write(f"Total mentions: {len(mention_times)} times")
 
                 # Create a pandas DataFrame to count mentions by hour
